@@ -19,6 +19,8 @@ def parseSPACE(x_string):
 			new_Str=new_Str+';'
 		elif x_string[i]=='I':
 			pass
+		elif x_string[i]=='\r':
+			pass
 		elif x_string[i]=='?':
 			pass
 		else:
