@@ -28,14 +28,7 @@ def parseSPACE(x_string):
 			new_Str=new_Str+x_string[i]
 	
 	lastStr=new_Str.replace(".;","")
-	#d= datetime.datetime.now()
-       	#fechaStr = str(d.year) + ';' + str(d.month) + ';' + str(d.day) + ';'
-	#lastStr = fechaStr  +  lastStr	
-	#lastStr  = ';' +  str(d.day) + ';' +  lastStr #aux = "%s%s"%(fechaStr, lastStr) #.join([fechaStr, lastStr])
-	#lastStr = ';' + str(d.month) + lastStr
-	#lastStr = str(d.year) + lastStr
-	#print lastStr
-	#ultimoStr = lastStr.replace("@", fechaStr)
+	
 	return lastStr
 			
 
@@ -53,30 +46,15 @@ while ser.isOpen():
 		print (x)
 		recorte=parseSPACE(x)
 		recorte=recorte[:-1]
-		#print "estoy afuera"
+		
 		print recorte
-		#d= datetime.datetime.now()
-                #fechaStr = str(d.year) + ';' + str(d.month) + ';' + str(d.day) + ';'
-		#auxStr = ''
-		#for i in fechaStr:
-		#	auxStr = auxStr + i
-		#for i  in recorte:
-		#	auxStr = auxStr +i
-		#print "Holu"
-		#print len(recorte)
-		#print len(fechaStr)
-		#print auxStr
-		#print len(auxStr)
+		
 		if len(recorte)>2:
 			print recorte[0]
 			if recorte[1]=='*':
 				with open('/home/udooer/Desktop/MDI-Bella_Union/logs/tempAlarm.csv','a') as alarmCSV:
 					alarmCSV.write(recorte)
 			else:
-				#d= datetime.datetime.now()
-       				#fechaStr = str(d.year) + ';' + str(d.month) + ';' + str(d.day) + ';'
-        			#lastStr = fechaStr  +  lastStr 
-				#print fechaStr + recorte
 				with open('/home/udooer/Desktop/MDI-Bella_Union/logs/temporal.csv','a') as CSV:
 					CSV.write(recorte)
 
