@@ -11,7 +11,7 @@ def parseSPACE(x_string):
 	for i in range(largo):
 		if x_string[i]==' ':
 			if comaFlag:
-				new_Str=new_Str+';'
+				new_Str=new_Str+';'   #pone una coma donde habria un espacio (para formato CSV supongo)
 				comaFlag=False
 		elif x_string[i]=='/':
 			pass
