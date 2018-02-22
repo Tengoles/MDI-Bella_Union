@@ -1,0 +1,6 @@
+Para hacer correr la interfaz:
+- instalar pyqtgraph
+	- instalar pip
+		- pip install pyqtgraph
+	- instalar pyqt4
+		- sudo apt-get install python-qt4
