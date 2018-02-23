@@ -12,7 +12,7 @@ def is_number(s):
         return False
 
 def parseSPACE(x_string):
-	aux = x_string[1:-3].split('   ')
+	aux = x_string[1:-3].split(' ')
 	aux = [x for x in aux if is_number(x)]
 	return ';'.join(aux)
 	#largo=len(x_string)
