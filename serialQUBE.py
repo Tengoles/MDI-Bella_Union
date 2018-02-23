@@ -63,9 +63,9 @@ while ser.isOpen():
 			print recorte[0]
 			if recorte[1]=='*':
 				with open('/home/udooer/Desktop/MDI-Bella_Union/logs/tempAlarm.csv','a') as alarmCSV:
-					alarmCSV.write(recorte)
+					alarmCSV.write(recorte + '\n')
 			else:
 				with open('/home/udooer/Desktop/MDI-Bella_Union/logs/temporal.csv','a') as CSV:
-					CSV.write(recorte)
+					CSV.write(recorte + '\n')
 
 ser.close()
