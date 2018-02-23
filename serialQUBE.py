@@ -4,32 +4,42 @@ import datetime
 def word_in_string(word_list,a_string):
 	return set(word_list).intersection(a_string.split())
 
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
 def parseSPACE(x_string):
-	largo=len(x_string)
-	new_Str=''
-	comaFlag=True
-	for i in range(largo):
-		if x_string[i]==' ':
-			if comaFlag:
-				new_Str=new_Str+';'   #pone una coma donde habria un espacio (para formato CSV supongo)
-				comaFlag=False
-		elif x_string[i]=='/':
-			pass
-		elif x_string[i]==':':
-			new_Str=new_Str+';'
-		elif x_string[i]=='I':
-			pass
-		elif x_string[i]=='\r':
-			pass
-		elif x_string[i]=='?':
-			pass
-		else:
-			comaFlag=True
-			new_Str=new_Str+x_string[i]
+	aux = x_string[1:-3].split('   ')
+	aux = [x for x in aux if is_number(x)]
+	return ';'.join(aux)
+	#largo=len(x_string)
+	#new_Str=''
+	#comaFlag=True
+	#for i in range(largo):
+		#if x_string[i]==' ':
+			#if comaFlag:
+				#new_Str=new_Str+';'   #pone una coma donde habria un espacio (para formato CSV supongo)
+				#comaFlag=False
+		#elif x_string[i]=='/':
+			#pass
+		#elif x_string[i]==':':
+			#new_Str=new_Str+';'
+		#elif x_string[i]=='I':
+			#pass
+		#elif x_string[i]=='\r':
+			#pass
+		#elif x_string[i]=='?':
+			#pass
+		#else:
+			#comaFlag=True
+			#new_Str=new_Str+x_string[i]
 	
-	lastStr=new_Str.replace(".;","")
+	#lastStr=new_Str.replace(".;","")
 	
-	return lastStr
+	#return lastStr
 			
 
 word_list=['REGISTRADOR', 'ECG', 'NOMBRE', 'HORA', '********', '\n']
