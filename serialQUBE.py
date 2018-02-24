@@ -29,31 +29,6 @@ def parseSPACE(x_string):
 	aux = x_string.split(' ')
 	aux = [x for x in aux if is_number(x) or x == '*']
 	return ';'.join(aux)
-	#largo=len(x_string)
-	#new_Str=''
-	#comaFlag=True
-	#for i in range(largo):
-		#if x_string[i]==' ':
-			#if comaFlag:
-				#new_Str=new_Str+';'   #pone una coma donde habria un espacio (para formato CSV supongo)
-				#comaFlag=False
-		#elif x_string[i]=='/':
-			#pass
-		#elif x_string[i]==':':
-			#new_Str=new_Str+';'
-		#elif x_string[i]=='I':
-			#pass
-		#elif x_string[i]=='\r':
-			#pass
-		#elif x_string[i]=='?':
-			#pass
-		#else:
-			#comaFlag=True
-			#new_Str=new_Str+x_string[i]
-	
-	#lastStr=new_Str.replace(".;","")
-	
-	#return lastStr
 
 word_list=['REGISTRADOR', 'ECG', 'NOMBRE', 'HORA', '********', '\n']
 logs_path = '/home/udooer/Desktop/MDI-Bella_Union/logs/'
