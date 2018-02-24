@@ -19,7 +19,7 @@ def insert_date(s):
 	else:
 		i = 0
 	date_str = datetime.datetime.now().strftime('%Y;%m;%d;%H;%M;%S;')
-	return s[0:i] + date_str + s[i+1:]
+	return s[0:i] + date_str + s[i:]
 	
 #le entra un string recibido del equipo, se queda solo con los numeros
 #y con el asterisco al principio (por si es una alarma)
