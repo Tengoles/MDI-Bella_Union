@@ -7,13 +7,13 @@ import time
 import monitorData
 import collections
 
-csvPath = ""
+csvPath = ''
 timeScaleOptions = collections.OrderedDict([
-    ["5m",5*60*1000],
-    ["10m",10*60*1000],
-    ["15m",15*60*1000],
-    ["30m",30*60*1000],
-    ["1h",1*60*60*1000],
+    ['5m',5*60*1000],
+    ['10m',10*60*1000],
+    ['15m',15*60*1000],
+    ['30m',30*60*1000],
+    ['1h',1*60*60*1000],
 ])
 
 # so I can label the plots in time
@@ -33,43 +33,43 @@ win.setWindowTitle('Operation Room #2')
 
 # controls
 pause_btn = QtGui.QPushButton()
-pause_btn.setText("Pause")
+pause_btn.setText('Pause')
 time_lbl = QtGui.QLabel()
-time_lbl.setText("Time scale: ")
+time_lbl.setText('Time scale: ')
 time_lbl.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignRight)
 cb = QtGui.QComboBox()
 cb.addItems(timeScaleOptions.keys())
 load_btn = QtGui.QPushButton()
-load_btn.setText("Load CSV")
+load_btn.setText('Load CSV')
 
 # plots
 pl1 = pg.PlotWidget(
-    title = "Heart Rate (BPM)",
+    title = 'Heart Rate (BPM)',
     axisItems={'bottom': TimeAxisItem(orientation='bottom')}
 )
 pl1.showGrid(x=True, y=True)
 pl1.setMouseEnabled(y=False)
 pl2 = pg.PlotWidget(
-    title = "O2 Saturation (%)",
+    title = 'O2 Saturation (%)',
     axisItems={'bottom': TimeAxisItem(orientation='bottom')}
 )
 pl2.showGrid(x=True, y=True)
 pl2.setMouseEnabled(y=False)
 pl3 = pg.PlotWidget(
-    title = "Blood Pressure (mmHg)",
+    title = 'Blood Pressure (mmHg)',
     colspan = 2,
     axisItems={'bottom': TimeAxisItem(orientation='bottom')}
 )
 pl3.showGrid(x=True, y=True)
 pl3.setMouseEnabled(y=False)
 legend = pl3.addLegend()
-pl3.plot(name="Systolic Arterial BP", pen = "m")
-pl3.plot(name="Mean Aterial BP", pen = "r")
-pl3.plot(name="Diasolic Arterial BP", pen = "g")
+pl3.plot(name='Systolic Arterial BP', pen = 'm')
+pl3.plot(name='Mean Aterial BP', pen = 'r')
+pl3.plot(name='Diasolic Arterial BP', pen = 'g')
 
 # scrolling plots
 plScroll = pg.PlotWidget(
-    title = "Time Selection",
+    title = 'Time Selection',
     axisItems={'bottom': TimeAxisItem(orientation='bottom')}
 )
 plScroll.showGrid(x=True, y=True)
@@ -104,7 +104,7 @@ is_paused = True
 
 # plot initialization
 def monitorDataInit(myData, csvPath):
-    with open(csvPath, "r") as f:
+    with open(csvPath, 'r') as f:
         for line in f:
             try:
                 resultados = map(int, line.split(','))
@@ -120,31 +120,31 @@ def monitorDataInit(myData, csvPath):
 
 #read line from csv
 def readLineCSV(path, line):
-    with open(path, "r") as f:
+    with open(path, 'r') as f:
         last_line = f.readlines()[line]
         return map(int, last_line[:-1].split(','))
 
 #update plot 1
 def updatePlot1(myData):
     pl1.clear()
-    pl1.plot(myData.t, myData.heartRate, pen="y")
-    plScroll.plot(myData.t, myData.heartRate, pen="y")
+    pl1.plot(myData.t, myData.heartRate, pen='y')
+    plScroll.plot(myData.t, myData.heartRate, pen='y')
 
 #update plot 2
 def updatePlot2(myData):
     pl2.clear()
-    pl2.plot(myData.t, myData.o2saturation, pen="c")
-    plScroll.plot(myData.t, myData.o2saturation, pen="c")
+    pl2.plot(myData.t, myData.o2saturation, pen='c')
+    plScroll.plot(myData.t, myData.o2saturation, pen='c')
 
 #update plot 3
 def updatePlot3(myData):
     pl3.clear()
-    pl3.plot(myData.t, myData.systolic_art, pen="m")
-    pl3.plot(myData.t, myData.diasolic_art, pen="g")
-    pl3.plot(myData.t, myData.mean_art, pen="r")
-    plScroll.plot(myData.t, myData.systolic_art, pen="m")
-    plScroll.plot(myData.t, myData.diasolic_art, pen="g")
-    plScroll.plot(myData.t, myData.mean_art, pen="r")
+    pl3.plot(myData.t, myData.systolic_art, pen='m')
+    pl3.plot(myData.t, myData.diasolic_art, pen='g')
+    pl3.plot(myData.t, myData.mean_art, pen='r')
+    plScroll.plot(myData.t, myData.systolic_art, pen='m')
+    plScroll.plot(myData.t, myData.diasolic_art, pen='g')
+    plScroll.plot(myData.t, myData.mean_art, pen='r')
 
 def updateTimeScale():
     maxX = region.getRegion()[1]
@@ -165,7 +165,7 @@ def getfile():
     global csvPath
     dlg = QtGui.QFileDialog()
     dlg.setFileMode(QtGui.QFileDialog.AnyFile)
-    dlg.setFilter("CSV files (*.csv)")
+    dlg.setFilter('CSV files (*.csv)')
     filenames = QtCore.QStringList()
 
     if dlg.exec_():
