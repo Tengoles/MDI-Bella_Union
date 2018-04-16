@@ -45,24 +45,30 @@ def readLineCSV(path, line):
 # update plot 1
 def updatePlot1(my_data):
     pl1.clear()
-    pl1.plot(my_data.t, my_data.heartRate, pen='y')
-    plScroll.plot(my_data.t, my_data.heartRate, pen='y')
+    pl1.plot(my_data.t, my_data.heartRate, pen=pg.mkPen('y',width=3))
+    plScroll.plot(my_data.t, my_data.heartRate, pen=pg.mkPen('y',width=3))
 
 # update plot 2
 def updatePlot2(my_data):
     pl2.clear()
-    pl2.plot(my_data.t, my_data.o2saturation, pen='c')
-    plScroll.plot(my_data.t, my_data.o2saturation, pen='c')
+    pl2.plot(my_data.t, my_data.o2saturation, pen=pg.mkPen('c',width=3))
+    plScroll.plot(my_data.t, my_data.o2saturation, pen=pg.mkPen('c',width=3))
 
 # update plot 3
 def updatePlot3(my_data):
     pl3.clear()
-    pl3.plot(my_data.t, my_data.systolic_art, pen='m')
-    pl3.plot(my_data.t, my_data.diasolic_art, pen='g')
-    pl3.plot(my_data.t, my_data.mean_art, pen='r')
-    plScroll.plot(my_data.t, my_data.systolic_art, pen='m')
-    plScroll.plot(my_data.t, my_data.diasolic_art, pen='g')
-    plScroll.plot(my_data.t, my_data.mean_art, pen='r')
+    pl3.plot(my_data.t, my_data.systolic_art, pen=pg.mkPen('m',width=3))
+    pl3.plot(my_data.t, my_data.diasolic_art, pen=pg.mkPen('g',width=3))
+    pl3.plot(my_data.t, my_data.mean_art, pen=pg.mkPen('r',width=3))
+    plScroll.plot(my_data.t, my_data.systolic_art, pen=pg.mkPen('m',width=3))
+    plScroll.plot(my_data.t, my_data.diasolic_art, pen=pg.mkPen('g',width=3))
+    plScroll.plot(my_data.t, my_data.mean_art, pen=pg.mkPen('r',width=3))
+
+def clear_plots():
+    pl1.clear()
+    pl2.clear()
+    pl3.clear()
+    plScroll.clear()
 
 def updateTimeScale():
     maxX = region.getRegion()[1]
@@ -104,6 +110,9 @@ def getfile():
 if __name__ == '__main__':
     import sys
 
+    pg.setConfigOption('background', 'w')
+    pg.setConfigOption('foreground', 'k')
+
     # GUI variable initialization
     app = QtGui.QApplication([])
     win = QtGui.QMainWindow()
@@ -119,6 +128,8 @@ if __name__ == '__main__':
     cb.addItems(timeScaleOptions.keys())
     load_btn = QtGui.QPushButton()
     load_btn.setText('Load CSV')
+    clear_btn = QtGui.QPushButton()
+    clear_btn.setText('Clear')
 
     # plots
     pl1 = pg.PlotWidget(
@@ -161,8 +172,7 @@ if __name__ == '__main__':
     # window formatting
     layout = pg.LayoutWidget()
     layout.addWidget(load_btn)
-    # layout.nextCol() # removed because of pause button
-    layout.nextCol()
+    layout.addWidget(clear_btn)
     layout.addWidget(time_lbl)
     layout.addWidget(cb)
     layout.nextRow()
@@ -182,6 +192,7 @@ if __name__ == '__main__':
     region.sigRegionChanged.connect(lambda: updatePlotFocus())
 
     load_btn.clicked.connect(getfile)
+    clear_btn.clicked.connect(lambda: clear_plots())
     cb.currentIndexChanged.connect(lambda: updateTimeScale())
 
     pl1.sigRangeChanged.connect(updateRegion)
